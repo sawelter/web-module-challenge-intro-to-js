@@ -20,6 +20,11 @@ Do the following:
    HINT: no function required
 */
 
+let votingAge = 15
+if(votingAge >= 18) {
+  console.log(true)
+}
+
 
 
 /*
@@ -33,7 +38,14 @@ Do the following:
 
    HINT: no function required
 */
+let firstThing = 10
+let secondThing = 10
+//console.log("first: " + firstThing + ";second: " + secondThing)
+if(firstThing === secondThing) {
+  firstThing = 2
+}
 
+//console.log("first: " + firstThing + ";second: " + secondThing)
 
 
 
@@ -48,6 +60,10 @@ Do the following:
 
    HINT: look up the Number method
 */
+let year = "1999"
+// console.log(year + 1)
+year = Number.parseInt(year)
+// console.log(year + 1)
 
 
 
@@ -60,10 +76,16 @@ Do the following:
    2. Receive the parameters: a and b
    3. Multiply a and b and return the answer
 */
+let a = 2
+let b = 4
+let product = multiply(a,b)
+// console.log(product)
 
 function multiply(num1, num2){
+  // console.log(num1 + " + " + num2 + " = " + num1 * num2)
   return num1 * num2;
 }
+
 
 
 
@@ -77,8 +99,8 @@ Do the following:
  3. Return the newly calculated age
 */
 
-function dogYears(/*add your code here*/){
-  /*add your code here*/
+function dogYears(age){
+  return age * 7
 }
 
 
@@ -88,6 +110,7 @@ function dogYears(/*add your code here*/){
 //Dog feeder - Depending on their weight and age, we need to know how many pounds of food to feed our dog each day!
 /*
 Use the hungryDog function and feeding requirements below to do the following:
+
 1. Invoke the hungryDog function below and pass it a weight value in pounds, followed by an age value in years
 2. 🌟 NOTE: if the dog is a puppy, the age will be a decimal (rounded to two places). For example: 3 months = .25 (3 divided by 12)
 3. Do the proper calculations and return the number of pounds of raw food to feed the dog/puppy in a day
@@ -129,9 +152,35 @@ NOTE 2: This is a great time to check the tests to see what it expects, versus w
         So, on this one test, the weight would be 4 pounds, and the age would be 1 years old. It's expecting your function to return a decimal number of 0.2
 */  
 
-function hungryDog(/*add your code here*/){
-  /*add your code here*/
+function hungryDog(weight /*lbs*/, age /*years*/){
+  // PUPPY: <1yr
+  if(age < 1) { //if puppy
+      if(age < .33) {         // age < 4 months
+        return weight * .1
+      } else if (age < .58) { // age 4-7 months
+        return weight * .05
+      } else {                // age 7-12 months
+        return weight * .04
+      }
+  }
+  else { // if adult
+      if (weight <= 5) {        // weight <= 5lbs
+        return weight * .05
+      } else if(weight <= 10) { // weight 6-10lbs
+        return weight * .04
+      } else if(weight <= 15) { //weight 11-15lbs
+        return weight *.03
+      } else {                  //weight >15lbs
+        return weight * .02
+      }
+    }
 }
+
+// CONSOLE LOG TEST
+// var lbs = 4
+// var years = 1
+// var food = hungryDog(lbs, years)
+// console.log(lbs + "lbs, " + years + " years, " + food + "lbs food")
 
 
 
@@ -156,8 +205,44 @@ Use the game function below to do the following:
 RULES OF THE GAME: Scissors beats Paper | Paper beats Rock | Rock beats Scissors | Or there's a tie
 */
 
+
+// Step 1: Computer randomly selects rock, paper, or scissors
+var computerChoice = Math.random()
+// console.log("random num: " + computerChoice)
+if(computerChoice < .33) {
+  computerChoice = "rock"
+} else if(computerChoice < .67) {
+  computerChoice = "paper"
+} else {
+  computerChoice = "scissors"
+}
+
+
+let userChoice = "scissors"
+// console.log("user: " + userChoice + ", computer: " + computerChoice)
+
+let result = game(userChoice, computerChoice)
+// console.log("result: " + result)
+
 function game(user, computer){
-  /*add your code here*/
+  const win = "you win!"
+  const loss = "you lose!"
+  const tie = "it's a tie"
+  // TIE CONDITION
+  if(user === computer) {
+    return tie
+  }
+  // WIN CONDITIONS
+  if(user === "rock" && computer === "scissors") {
+    return win
+  } else if(user === "scissors" && computer === "paper") {
+    return win
+  } else if(user === "paper" && computer === "rock") {
+    return win
+  // ELSE - LOSS CONDITIONS
+  } else {
+    return loss
+  }
 }
 
 
@@ -173,8 +258,12 @@ Using the miles function below do the following:
 3. Return the number of miles
 */
 
-function miles(/*add your code here*/){
-  /*add your code here*/
+var km = 15;
+var mi = miles(km)
+// console.log(km + " kilometers = " + mi + " miles")
+
+function miles(kilometers){
+  return kilometers * 0.621371
 }
 
 
@@ -187,8 +276,12 @@ Using the feet function below do the following:
 3. Return number of feet
 */
 
-function feet(/*add your code here*/){
-  /*add your code here*/
+var cm = 40;
+var ft = feet(cm)
+// console.log(cm + " cm = " + ft + " ft")
+
+function feet(centimeters){
+  return centimeters / 30.48
 }
 
 
@@ -207,8 +300,13 @@ Using the annoyingSong function below do the following:
 4. Each time the annoyingSong is run from this loop, it should console.log the string that was returned. 
 */
 
-function annoyingSong(/*add your code here*/){
-      /*add your code here*/
+// let bottles = 99
+// for(let i = bottles; i > 0; i--) {
+//   console.log(annoyingSong(i))
+// }
+
+function annoyingSong(numBottles){
+    return numBottles + " bottles of soda on the wall, " + numBottles + " bottles of soda, take one down pass it around " + (numBottles-1) + " bottles of soda on the wall"
 }
 
 
@@ -227,8 +325,24 @@ Using the grade function below do the following:
  below should return 'you got an F'
 */
 
-function grade(/*Your Code here */){
-/*Your Code here */
+// TEST
+// let score = 0
+// console.log(grade(score))
+
+function grade(scoreNum){
+  if(scoreNum < 60) {
+    return 'you got an F'
+  } else if (scoreNum < 70) {
+    return 'you got a D'
+  } else if (scoreNum < 80) {
+    return 'you got a C'
+  }else if (scoreNum < 90) {
+    return 'you got a B'
+  }else if (scoreNum < 100) {
+    return 'you got an A'
+  } else {
+    return 'A+, congrats!'
+  }
 }
 
 
@@ -242,12 +356,24 @@ Using the vowelCounter function below do the following:
 2. Count and return the number of vowels within that string.  It should handle both capitalized and uncapitalized vowels.
 
 HINT - you may need to study tomorrow's content on arrays 
-HINT - try looking up the .includes() method
-*/
+HINT - try looking up the .includes() method*/
 
 
-function vowelCounter(/*add your code here*/) {
-  /*add your code here*/
+// VOWEL COUNTER CONSOLE OUTPUT TEST
+// let myString = "Hello, my name is Sawyer! I love birds a lot."
+// let vowels = vowelCounter(myString)
+// console.log("String: " + myString)
+// console.log("Number of vowels in string: " + vowels)
+
+function vowelCounter(input) {
+  let numVowels = 0
+  let vowels = ['a','e','i','o','u','A','E','I','O','U']
+  for(let i = 0; i < input.length; i++) {
+    if(vowels.includes(input.charAt(i))) {
+      numVowels++
+    }
+  }
+  return numVowels
 }
 
 
